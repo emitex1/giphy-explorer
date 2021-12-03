@@ -1,10 +1,24 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import tw from 'twin.macro';
 import 'styled-components/macro';
+import { setSearchKeyword } from '../../store/actions/giphyActions';
 
 const SearchInput = () => {
   const [keyword, setKeyword] = useState('');
+  const dispatch = useDispatch();
+
+  const dispatchKeyword = () => {
+    dispatch(setSearchKeyword(keyword));
+  }
+
+  const handleKeyPress = (e: any) => {
+    if(e.charCode === 13) {
+      dispatchKeyword();
+    }
+  }
+
   return (
     <div tw="w-8/12 mx-auto my-5 text-center">
       <input
@@ -13,6 +27,8 @@ const SearchInput = () => {
         placeholder="Enter your keyword here to search ..."
         value={keyword}
         onChange={e => setKeyword(e.target.value)}
+        onKeyPress={handleKeyPress}
+        onBlur={dispatchKeyword}
       />
     </div>
   )
