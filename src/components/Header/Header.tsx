@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { useEffect, useState, useRef } from 'react';
 import tw from 'twin.macro';
 import 'styled-components/macro';
-import giphyMp4 from "../assets/images/giphy-color-shooting.mp4";
+import giphyMp4 from "../../assets/images/giphy-color-shooting.mp4";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
