@@ -14,11 +14,13 @@ const SearchResult = () => {
   const searchKeyword = useAppSelector( s => s.giphyReducer.searchKeyword );
   const [gifs, setGifs] = useState<gifProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [offset, setOffset] = useState(0);
+  const PAGE_SIZE = 12;
 
   useEffect(() => {
     if(process.env.REACT_APP_GIPHY_API_KEY) {
       setIsLoading(true);
-      fetch("http://api.giphy.com/v1/gifs/search?api_key=" + process.env.REACT_APP_GIPHY_API_KEY + "&q=" + searchKeyword)
+      fetch("http://api.giphy.com/v1/gifs/search?api_key=" + process.env.REACT_APP_GIPHY_API_KEY + "&q=" + searchKeyword + "&limit=" + PAGE_SIZE + "&offset=" + offset)
       .then(response => response.json())
       .then(data => {
         const gifsResult: gifProps[] = data && data.data && data.data.map( (d: any) => ({
@@ -33,12 +35,12 @@ const SearchResult = () => {
     else {
       console.log("Please provide a valid API key for Giphy");
     }
-  }, [searchKeyword])
+  }, [searchKeyword, offset]);
 
-  const emptyCells = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+  const emptyCells = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
   return (
-    <div tw="w-8/12 mx-auto my-5 text-center">
+    <div tw="w-8/12 mx-auto my-14 text-center">
 
       {isLoading && (
         <div tw="flex flex-wrap justify-center items-center gap-5 animate-pulse">
