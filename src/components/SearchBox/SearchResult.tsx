@@ -35,11 +35,17 @@ const SearchResult = () => {
     }
   }, [searchKeyword])
 
+  const emptyCells = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+
   return (
     <div tw="w-8/12 mx-auto my-5 text-center">
 
       {isLoading && (
-        <span>Loading, Please Wait ...</span>
+        <div tw="flex flex-wrap justify-center items-center gap-5 animate-pulse">
+          { emptyCells.map( (e) => (
+            <div tw="w-32 h-32 bg-gray-800 flex justify-around items-center"></div>
+          ))}
+        </div>
       )}
 
       <div tw="flex flex-wrap justify-center gap-6">
