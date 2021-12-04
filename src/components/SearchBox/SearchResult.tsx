@@ -5,39 +5,30 @@ import 'styled-components/macro';
 import {useAppSelector} from '../../store/hooks';
 import Pagination from './Pagination';
 import Modal from '../Modal/Modal';
-
-interface gifProps {
-  title: string;
-  thumbnail: string;
-  original: string;
-  downsized: string;
-  width: string;
-  height: string;
-}
+import GifProps from './GifProps';
 
 const SearchResult = () => {
   const searchKeyword = useAppSelector( s => s.giphyReducer.searchKeyword );
-  const [gifs, setGifs] = useState<gifProps[]>([]);
+  const [gifs, setGifs] = useState<GifProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [offset, setOffset] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const PAGE_SIZE = 12;
   const MAX_API_RESULT = 5000; // maximum result number of Giphy API
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [currentGif, setCurrentGif] = useState<gifProps>();
+  const [currentGif, setCurrentGif] = useState<GifProps>();
 
   useEffect(() => {
     setOffset(0);
   }, [searchKeyword]);
 
   useEffect(() => {
-    console.log('process.env=', process.env);
     if(process.env.REACT_APP_GIPHY_API_KEY) {
       setIsLoading(true);
       fetch("http://api.giphy.com/v1/gifs/search?api_key=" + process.env.REACT_APP_GIPHY_API_KEY + "&q=" + searchKeyword + "&limit=" + PAGE_SIZE + "&offset=" + offset)
       .then(response => response.json())
       .then(data => {
-        const gifsResult: gifProps[] = data && data.data && data.data.map( (d: any) => ({
+        const gifsResult: GifProps[] = data && data.data && data.data.map( (d: any) => ({
           title: d.title,
           thumbnail: d.images.fixed_width_small_still.url,
           original: d.images.original.url,
