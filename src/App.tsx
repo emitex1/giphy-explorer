@@ -3,13 +3,17 @@ import React from 'react';
 import tw from 'twin.macro';
 import 'styled-components/macro';
 import Header from './components/Header/Header';
-import SearchBox from './components/SearchBox/SearchBox';
+import SearchInput from './components/SearchInput/SearchInput';
+import SearchResult from './components/SearchBox/SearchResult';
 
 function App() {
   return (
-    <div tw="container ">
-      <Header />
-      <SearchBox />
+    <div tw="container">
+      <div tw="sticky top-0">
+        <Header />
+        <SearchInput />
+      </div>
+      <SearchResult />
     </div>
   );
 }
