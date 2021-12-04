@@ -31,6 +31,7 @@ const SearchResult = () => {
   }, [searchKeyword]);
 
   useEffect(() => {
+    console.log('process.env=', process.env);
     if(process.env.REACT_APP_GIPHY_API_KEY) {
       setIsLoading(true);
       fetch("http://api.giphy.com/v1/gifs/search?api_key=" + process.env.REACT_APP_GIPHY_API_KEY + "&q=" + searchKeyword + "&limit=" + PAGE_SIZE + "&offset=" + offset)
