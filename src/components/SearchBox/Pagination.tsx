@@ -36,20 +36,22 @@ const Pagination = ({totalCount, pageSize, offset, setOffset}: PaginationProps) 
   }
 
   const classes = {
-    btn: tw`h-10 w-10 bg-purple-700 hover:bg-purple-600 rounded-sm p-1 cursor-pointer`,
+    btn: tw`h-10 w-10 bg-purple-700 hover:bg-purple-600 rounded-sm p-1 cursor-pointer transition-all`,
+    moveRight: tw`hover:translate-x-2`,
+    moveLeft: tw`hover:-translate-x-2`,
     disabledCursor: tw`cursor-not-allowed`
   }
 
   return (
     <div tw="flex justify-center items-center gap-10 mb-10">
 
-      <div css={[classes.btn, offset === 0 && classes.disabledCursor]} onClick={handleFirstClick}>
+      <div css={[classes.btn, offset > 0 && classes.moveLeft, offset === 0 && classes.disabledCursor]} onClick={handleFirstClick}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
         </svg>
       </div>
 
-      <div css={[classes.btn, offset === 0 && classes.disabledCursor]} onClick={handlePrevClick}>
+      <div css={[classes.btn, offset > 0 && classes.moveLeft, offset === 0 && classes.disabledCursor]} onClick={handlePrevClick}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
@@ -57,13 +59,13 @@ const Pagination = ({totalCount, pageSize, offset, setOffset}: PaginationProps) 
 
       {currentPage+1} / {pagesCount}
 
-      <div css={[classes.btn, (currentPage+1 === pagesCount) && classes.disabledCursor]} onClick={handleNextClick}>
+      <div css={[classes.btn, (currentPage + 1 < pagesCount) && classes.moveRight, (currentPage+1 === pagesCount) && classes.disabledCursor]} onClick={handleNextClick}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </div>
 
-      <div css={[classes.btn, (currentPage+1 === pagesCount) && classes.disabledCursor]} onClick={handleLastClick}>
+      <div css={[classes.btn, (currentPage + 1 < pagesCount) && classes.moveRight, (currentPage+1 === pagesCount) && classes.disabledCursor]} onClick={handleLastClick}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
         </svg>
