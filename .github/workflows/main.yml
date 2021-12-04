@@ -12,6 +12,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_GIPHY_API_KEY: tVaJe9QRTL6VZp9xhBkogbNWFTI9hYnJ
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
