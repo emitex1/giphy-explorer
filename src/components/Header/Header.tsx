@@ -15,7 +15,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div tw="flex justify-center text-center items-center">
+    <div tw="flex justify-center text-center items-center bg-black">
       <video ref={videoRef} preload="true" width="200">
         <source src={giphyMp4} type="video/mp4"></source>
         GIPHY Logo
