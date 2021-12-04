@@ -16,6 +16,7 @@ const SearchResult = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [offset, setOffset] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
+  const [apiErrorMessage, setApiErrorMessage] = useState('');
   const PAGE_SIZE = 12;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currentGif, setCurrentGif] = useState<GifProps>();
@@ -27,9 +28,10 @@ const SearchResult = () => {
   const readData = async () => {
     setIsLoading(true);
 
-    const { gifs, totalCount } = await readGiphyData(searchKeyword, PAGE_SIZE, offset);
+    const { gifs, totalCount, errorMessage } = await readGiphyData(searchKeyword, PAGE_SIZE, offset);
     if(gifs) setGifs(gifs);
     if(totalCount) setTotalCount(totalCount);
+    if(errorMessage) setApiErrorMessage(errorMessage);
 
     setIsLoading(false);
   }
@@ -43,12 +45,12 @@ const SearchResult = () => {
     <>
       <div tw="w-8/12 mx-auto my-14 text-center">
 
-        {isLoading && (
-          <GridLoading />
-        )}
+        { isLoading && <GridLoading /> }
+
+        { apiErrorMessage && <span tw="text-red-700 text-2xl mx-auto">{apiErrorMessage}</span> }
 
         <div tw="flex flex-wrap justify-center gap-6">
-          {!isLoading && gifs.map( g => (
+          {!isLoading && !apiErrorMessage && gifs.map( g => (
             <div tw="flex items-center flex-col w-32 cursor-pointer" onClick={ (e) => {
               setCurrentGif(g);
               setIsOpen(true);

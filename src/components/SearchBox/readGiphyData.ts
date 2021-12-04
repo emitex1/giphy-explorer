@@ -4,7 +4,16 @@ import GifProps from "./GifProps";
 const MAX_API_RESULT = 5000; // maximum result number of Giphy API
 
 const readGiphyData = async (searchKeyword: string, pageSize: number, offset: number) => {
-  if(process.env.REACT_APP_GIPHY_API_KEY) {
+  if(! process.env.REACT_APP_GIPHY_API_KEY) {
+    console.log("Please provide a valid API key for Giphy");
+    return {
+      gifs: [],
+      totalCount: 0,
+      errorMessage: "Please provide a valid API key for Giphy"
+    };
+  }
+
+  try {
     const rawData = await fetch("http://api.giphy.com/v1/gifs/search?api_key=" + process.env.REACT_APP_GIPHY_API_KEY + "&q=" + searchKeyword + "&limit=" + pageSize + "&offset=" + offset)
     const data: any = await rawData.json();
       
@@ -21,15 +30,14 @@ const readGiphyData = async (searchKeyword: string, pageSize: number, offset: nu
 
     return {
       gifs,
-      totalCount
+      totalCount,
+      errorMessage: ''
     };
-
-  }
-  else {
-    console.log("Please provide a valid API key for Giphy");
+  } catch (error: any) {
     return {
       gifs: [],
-      totalCount: 0
+      totalCount: -1,
+      errorMessage: error.toString()
     };
   }
 }
