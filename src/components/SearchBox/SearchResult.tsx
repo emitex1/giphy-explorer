@@ -18,6 +18,7 @@ const SearchResult = () => {
   const [offset, setOffset] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const PAGE_SIZE = 12;
+  const MAX_API_RESULT = 5000; // maximum result number of Giphy API
 
   useEffect(() => {
     setOffset(0);
@@ -35,7 +36,7 @@ const SearchResult = () => {
           original: d.images.original.url
         }));
         setGifs(gifsResult);
-        setTotalCount(data.pagination.total_count);
+        setTotalCount(Math.min(MAX_API_RESULT, data.pagination.total_count));
         setIsLoading(false);
       });
     }
