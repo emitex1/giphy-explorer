@@ -10,6 +10,12 @@ Then run it using:
 
 `yarn start`
 
+## Live Demo
+[Live on Netlify](https://giphy-explorer.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a11bb6d6-7a4f-43c7-9ff3-614db7821e1a/deploy-status)](https://app.netlify.com/sites/giphy-explorer/deploys)
+
+[Live on GithubPages](https://em-it.github.io/giphy-explorer/)
+
 # Developer
 Emad Armoun (EmIT)
 
