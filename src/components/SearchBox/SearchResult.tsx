@@ -20,6 +20,10 @@ const SearchResult = () => {
   const PAGE_SIZE = 12;
 
   useEffect(() => {
+    setOffset(0);
+  }, [searchKeyword]);
+
+  useEffect(() => {
     if(process.env.REACT_APP_GIPHY_API_KEY) {
       setIsLoading(true);
       fetch("http://api.giphy.com/v1/gifs/search?api_key=" + process.env.REACT_APP_GIPHY_API_KEY + "&q=" + searchKeyword + "&limit=" + PAGE_SIZE + "&offset=" + offset)
