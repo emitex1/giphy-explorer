@@ -43,7 +43,7 @@ const Pagination = ({totalCount, pageSize, offset, setOffset}: PaginationProps) 
   }
 
   return (
-    <div tw="flex justify-center items-center gap-10 mb-10">
+    <div tw="flex justify-center items-center gap-5 md:gap-10 mb-10">
 
       <div css={[classes.btn, offset > 0 && classes.moveLeft, offset === 0 && classes.disabledCursor]} onClick={handleFirstClick}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -43,7 +43,7 @@ const SearchResult = () => {
 
   return (
     <>
-      <div tw="w-8/12 mx-auto my-14 text-center">
+      <div tw="w-full md:w-8/12 mx-auto my-14 text-center">
 
         { isLoading && <GridLoading /> }
 

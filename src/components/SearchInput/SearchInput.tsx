@@ -20,10 +20,10 @@ const SearchInput = () => {
   }
 
   return (
-    <div tw="w-8/12 mx-auto py-4 text-center bg-black">
+    <div tw="w-full md:w-8/12 mx-auto py-4 text-center bg-black">
       <input
         type="text"
-        tw="transition-all border-none rounded-md shadow-purple focus:shadow-purple-light bg-gray-300 focus:bg-white text-sm text-purple-600 px-4 py-2 mx-auto w-3/12 focus:w-5/12"
+        tw="transition-all border-none rounded-md shadow-purple focus:shadow-purple-light bg-gray-300 focus:bg-white text-sm text-purple-600 px-4 py-2 mx-auto w-8/12 focus:w-10/12 md:w-3/12 md:focus:w-5/12"
         placeholder="Enter your keyword here to search ..."
         value={keyword}
         onChange={e => setKeyword(e.target.value)}
