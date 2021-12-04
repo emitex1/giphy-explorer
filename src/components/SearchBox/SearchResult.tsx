@@ -15,8 +15,6 @@ const SearchResult = () => {
   const [gifs, setGifs] = useState<gifProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  console.log();
-
   useEffect(() => {
     if(process.env.REACT_APP_GIPHY_API_KEY) {
       setIsLoading(true);
@@ -44,7 +42,7 @@ const SearchResult = () => {
         <span>Loading, Please Wait ...</span>
       )}
 
-      <div tw="flex flex-wrap gap-6">
+      <div tw="flex flex-wrap justify-center gap-6">
         {!isLoading && gifs.map( g => (
           <div tw="flex items-center flex-col w-32 cursor-pointer">
             <img src={g.thumbnail} alt={g.title} tw="transition-all w-24 hover:w-28" />
