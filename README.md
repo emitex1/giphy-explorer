@@ -15,11 +15,11 @@ Then run it using:
 ## Live Demo
 [Live on Netlify](https://giphy-explorer.netlify.app/)
 
-[Live on GithubPages](https://em-it.github.io/giphy-explorer/)
+[Live on GithubPages](https://emitex1.github.io/giphy-explorer/)
 
 # Developer
 Emad Armoun (EmIT)
 
 [My Website](http://www.Armoun.com)
 
-[My Git Page](https://em-it.github.io)
+[My Git Page](https://emitex1.github.io)
